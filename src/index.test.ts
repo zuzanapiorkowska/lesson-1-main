@@ -84,12 +84,15 @@ class TurboNumber3 {
 }
 
 describe(TurboNumber3.name, () => {
+  let tn: TurboNumber3;
+  beforeEach(()=>{
+    tn = new TurboNumber3(10);
+  })
   test.each([
     { givenNumber: 2, result: 8 },
     { givenNumber: -3, result: 13 },
     { givenNumber: 0, result: 10 },
   ])(`10 minus $givenNumber shuold give $result`, ({ givenNumber, result }) => {
-    const tn = new TurboNumber3(10);
     tn.subtract(givenNumber);
     expect(tn.result()).toBe(result);
   }),
@@ -99,7 +102,6 @@ describe(TurboNumber3.name, () => {
     ])(
       `10 divided by $givenNumber shuold give $result`,
       ({ givenNumber, result }) => {
-        const tn = new TurboNumber3(10);
         tn.divide(givenNumber);
         expect(tn.result()).toBe(result);
       }
@@ -107,11 +109,10 @@ describe(TurboNumber3.name, () => {
 
   it("should throw error", () => {
     //given
-    const ts = new TurboNumber3(10);
-    expect(() => ts.divide(0)).toThrow("Cannot divide by 0");
+    expect(() => tn.divide(0)).toThrow("Cannot divide by 0");
   });
 
   it("should chain operations", () => {
-    expect(new TurboNumber3(10).subtract(2).divide(2).result()).toBe(4);
+    expect(tn.subtract(2).divide(2).result()).toBe(4);
   })
 });
