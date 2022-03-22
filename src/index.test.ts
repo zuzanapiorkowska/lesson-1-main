@@ -71,7 +71,9 @@ class TurboNumber3 {
     this.inputNumber -= number;
   }
 
-  divide (number: number): void {
+  divide(number: number): void {
+    if (number === 0) throw new Error("Cannot divide by 0");
+
     this.inputNumber /= number;
   }
 
@@ -90,13 +92,21 @@ describe(TurboNumber3.name, () => {
     tn.subtract(givenNumber);
     expect(tn.result()).toBe(result);
   }),
+    test.each([
+      { givenNumber: 2, result: 5 },
+      { givenNumber: -2, result: -5 },
+    ])(
+      `10 divided by $givenNumber shuold give $result`,
+      ({ givenNumber, result }) => {
+        const tn = new TurboNumber3(10);
+        tn.divide(givenNumber);
+        expect(tn.result()).toBe(result);
+      }
+    );
 
-  test.each([
-    { givenNumber: 2, result: 5 },
-    { givenNumber: -2, result: -5 },
-  ])(`10 divided by $givenNumber shuold give $result`, ({ givenNumber, result }) => {
-    const tn = new TurboNumber3(10);
-    tn.divide(givenNumber);
-    expect(tn.result()).toBe(result);
+  it("should throw error", () => {
+    //given
+    const ts = new TurboNumber3(10);
+    expect(() => ts.divide(0)).toThrow("Cannot divide by 0");
   });
 });
