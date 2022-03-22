@@ -20,4 +20,11 @@ describe(TurboNumber.name, () => {
     //then
     expect(tn.result()).toBe(5);
   });
+
+  it("correctly divides 10 by 2", () => {
+    const tn = new TurboNumber(10);
+    tn.divide(2);
+    expect(tn.result()).toBe(5);
+  })
 });
+
