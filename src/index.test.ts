@@ -45,16 +45,29 @@ class TurboNumber2 {
 describe(TurboNumber2.name, ()=> {
   [
     {number: 2, result: 8},
-    {number: 3, result: 7},
-    {number: 4, result: 6}
+    {number: -3, result: 13},
+    {number: 0, result: 10}
   ].forEach(({number, result}) =>
   it(`10 minus ${number} should return ${result}`, ()=>{
   
     //when
     const ts = new TurboNumber2(10);
-    ts.substract(number);
+    ts.subtract(number);
 
-    expect(ts.result()).toBe(result)
+    expect(ts.result()).toBe(result);
+  });
+
+  [
+    {number: 2, result: 5},
+    {number: -5, result: -2}
+  ].forEach(({number, result}) =>
+  it(`10 divided by ${number} should return ${result}`, ()=>{
+  
+    //when
+    const ts = new TurboNumber2(10);
+    ts.divide(number);
+
+    expect(ts.result()).toBe(result);
   })
+)})
 
-})
