@@ -27,7 +27,12 @@ describe.skip(TurboNumber.name, () => {
   });
 });
 
-describe(TurboNumber2.name, () => {
+let ts: TurboNumber;
+describe.skip(TurboNumber2.name, () => {
+  beforeEach(()=> {
+    ts = new TurboNumber(10);
+   }),
+   
   [
     { number: 2, result: 8 },
     { number: -3, result: 13 },
@@ -35,7 +40,6 @@ describe(TurboNumber2.name, () => {
   ].forEach(({ number, result }) => {
     it(`10 minus ${number} should return ${result}`, () => {
       //when
-      const ts = new TurboNumber2(10);
       ts.subtract(number);
       //then
       expect(ts.result()).toBe(result);
@@ -58,3 +62,7 @@ describe(TurboNumber2.name, () => {
       expect(new TurboNumber2(10).divide(2).subtract(3).result()).toBe(2);
     })
 });
+
+
+
+
