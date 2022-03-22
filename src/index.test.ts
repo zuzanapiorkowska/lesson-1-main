@@ -67,14 +67,15 @@ class TurboNumber3 {
     this.inputNumber = inputNumber;
   }
 
-  subtract(number: number): void {
+  subtract(number: number): TurboNumber3 {
     this.inputNumber -= number;
+    return this;
   }
 
-  divide(number: number): void {
+  divide(number: number): TurboNumber3 {
     if (number === 0) throw new Error("Cannot divide by 0");
-
     this.inputNumber /= number;
+    return this;
   }
 
   result(): number {
@@ -109,4 +110,8 @@ describe(TurboNumber3.name, () => {
     const ts = new TurboNumber3(10);
     expect(() => ts.divide(0)).toThrow("Cannot divide by 0");
   });
+
+  it("should chain operations", () => {
+    expect(new TurboNumber3(10).subtract(2).divide(2).result()).toBe(4);
+  })
 });
