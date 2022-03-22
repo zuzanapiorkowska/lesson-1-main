@@ -71,6 +71,10 @@ class TurboNumber3 {
     this.inputNumber -= number;
   }
 
+  divide (number: number): void {
+    this.inputNumber /= number;
+  }
+
   result(): number {
     return this.inputNumber;
   }
@@ -84,6 +88,15 @@ describe(TurboNumber3.name, () => {
   ])(`10 minus $givenNumber shuold give $result`, ({ givenNumber, result }) => {
     const tn = new TurboNumber3(10);
     tn.subtract(givenNumber);
+    expect(tn.result()).toBe(result);
+  }),
+
+  test.each([
+    { givenNumber: 2, result: 5 },
+    { givenNumber: -2, result: -5 },
+  ])(`10 divided by $givenNumber shuold give $result`, ({ givenNumber, result }) => {
+    const tn = new TurboNumber3(10);
+    tn.divide(givenNumber);
     expect(tn.result()).toBe(result);
   });
 });
