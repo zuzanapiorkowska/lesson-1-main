@@ -29,22 +29,21 @@ describe.skip(TurboNumber.name, () => {
 
 let ts: TurboNumber;
 describe.skip(TurboNumber2.name, () => {
-  beforeEach(()=> {
+  beforeEach(() => {
     ts = new TurboNumber(10);
-   }),
-   
-  [
-    { number: 2, result: 8 },
-    { number: -3, result: 13 },
-    { number: 0, result: 10 },
-  ].forEach(({ number, result }) => {
-    it(`10 minus ${number} should return ${result}`, () => {
-      //when
-      ts.subtract(number);
-      //then
-      expect(ts.result()).toBe(result);
-    });
   }),
+    [
+      { number: 2, result: 8 },
+      { number: -3, result: 13 },
+      { number: 0, result: 10 },
+    ].forEach(({ number, result }) => {
+      it(`10 minus ${number} should return ${result}`, () => {
+        //when
+        ts.subtract(number);
+        //then
+        expect(ts.result()).toBe(result);
+      });
+    }),
     [
       { number: 2, result: 5 },
       { number: -5, result: -2 },
@@ -57,12 +56,34 @@ describe.skip(TurboNumber2.name, () => {
         expect(ts.result()).toBe(result);
       });
     }),
-
-    it("chains multiple operations", ()=> {
+    it("chains multiple operations", () => {
       expect(new TurboNumber2(10).divide(2).subtract(3).result()).toBe(2);
-    })
+    });
 });
 
+class TurboNumber3 {
+  inputNumber: number;
+  constructor(inputNumber: number) {
+    this.inputNumber = inputNumber;
+  }
 
+  subtract(number: number): void {
+    this.inputNumber -= number;
+  }
 
+  result(): number {
+    return this.inputNumber;
+  }
+}
 
+describe(TurboNumber3.name, () => {
+  test.each([
+    { givenNumber: 2, result: 8 },
+    { givenNumber: -3, result: 13 },
+    { givenNumber: 0, result: 10 },
+  ])(`10 minus $givenNumber shuold give $result`, ({ givenNumber, result }) => {
+    const tn = new TurboNumber3(10);
+    tn.subtract(givenNumber);
+    expect(tn.result()).toBe(result);
+  });
+});
