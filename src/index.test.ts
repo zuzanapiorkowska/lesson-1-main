@@ -1,4 +1,5 @@
 import { TurboNumber } from "./TurboNumber";
+import { TurboNumber2 } from "./TurboNumber2";
 
 describe.skip(TurboNumber.name, () => {
   it("correctly subtracts 5 from 10", () => {
@@ -25,27 +26,6 @@ describe.skip(TurboNumber.name, () => {
     expect(() => tn.divide(0)).toThrow("Cannot divide by 0");
   });
 });
-
-class TurboNumber2 {
-  givenNumber: number;
-  constructor(givenNumber: number) {
-    this.givenNumber = givenNumber;
-  }
-
-  subtract(number: number): TurboNumber2 {
-    this.givenNumber -= number;
-    return this;
-  }
-
-  divide(number: number): TurboNumber2 {
-    this.givenNumber /= number;
-    return this;
-  }
-
-  result() {
-    return this.givenNumber;
-  }
-}
 
 describe(TurboNumber2.name, () => {
   [
