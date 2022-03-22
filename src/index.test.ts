@@ -27,6 +27,21 @@ describe.skip(TurboNumber.name, () => {
 });
 
 
+class TurboNumber2 {
+  givenNumber: number;
+  constructor(givenNumber: number) {
+    this.givenNumber = givenNumber
+  }
+
+  subtract(number: number): void {
+    this.givenNumber -= number;
+  }
+
+  result() {
+    return this.givenNumber;
+  }
+}
+
 describe(TurboNumber2.name, ()=> {
   [
     {number: 2, result: 8},
