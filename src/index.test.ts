@@ -1,6 +1,6 @@
 import { TurboNumber } from "./TurboNumber"
 
-describe(TurboNumber.name, () => {
+describe.skip(TurboNumber.name, () => {
   it("correctly subtracts 5 from 10", () => {
     //when
     const tn = new TurboNumber(10);
@@ -26,3 +26,20 @@ describe(TurboNumber.name, () => {
   })
 });
 
+
+describe(TurboNumber2.name, ()=> {
+  [
+    {number: 2, result: 8},
+    {number: 3, result: 7},
+    {number: 4, result: 6}
+  ].forEach(({number, result}) =>
+  it(`10 minus ${number} should return ${result}`, ()=>{
+  
+    //when
+    const ts = new TurboNumber2(10);
+    ts.substract(number);
+
+    expect(ts.result()).toBe(result)
+  })
+
+})
