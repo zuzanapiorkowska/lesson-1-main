@@ -4,7 +4,11 @@ class TurboNumber {
     this.givenNumber = givenNumber;
   }
   subtract (number: number): void {
-    this.givenNumber -= number
+    this.givenNumber -= number;
+  }
+
+  divide (number: number): void {
+    this.givenNumber /= number; 
   }
 
   result(): number {
@@ -25,6 +29,11 @@ describe(TurboNumber.name, () => {
     const tn = new TurboNumber(10);
     tn.divide(2);
     expect(tn.result()).toBe(5);
+  })
+
+  it("correctly chains substract, divide and result", ()=> {
+    const tn = new TurboNumber(10).divide(2).substract(3).result();
+    expect(tn).toBe(2);
   })
 });
 
