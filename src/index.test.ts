@@ -37,5 +37,10 @@ describe(TurboNumber.name, () => {
     const tn = new TurboNumber(10).divide(2).subtract(3).result();
     expect(tn).toBe(2);
   })
+
+  it("throws error when dividing by 0", ()=> {
+    const tn = new TurboNumber(10);
+    expect(tn.divide(0)).toThrow("Cannot divide by 0")
+  })
 });
 
