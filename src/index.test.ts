@@ -32,12 +32,14 @@ class TurboNumber2 {
     this.givenNumber = givenNumber;
   }
 
-  subtract(number: number): void {
+  subtract(number: number): TurboNumber2 {
     this.givenNumber -= number;
+    return this;
   }
 
-  divide(number: number): void {
+  divide(number: number): TurboNumber2 {
     this.givenNumber /= number;
+    return this;
   }
 
   result() {
